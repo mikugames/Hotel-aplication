@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/levinsousa/Documents/NetBeansProjects/Hotel-aplication/src/telas/CadastroQuartoScreen.java</file>
-            <file>file:/C:/Users/levinsousa/Documents/NetBeansProjects/Hotel-aplication/src/telas/HomeScreen.java</file>
-            <file>file:/C:/Users/levinsousa/Documents/NetBeansProjects/Hotel-aplication/src/telas/PainelDeControle.java</file>
+            <file>file:/C:/Users/levinsousa/Documents/NetBeansProjects/Hotel-aplication/src/telas/LoginScreenGerente.java</file>
+            <file>file:/C:/Users/levinsousa/Documents/NetBeansProjects/Hotel-aplication/src/telas/LoginScreenAdmin.java</file>
             <file>file:/C:/Users/levinsousa/Documents/NetBeansProjects/Hotel-aplication/src/conexaoDB/Conectar.java</file>
+            <file>file:/C:/Users/levinsousa/Documents/NetBeansProjects/Hotel-aplication/src/dao/Funcionalidades.java</file>
             <file>file:/C:/Users/levinsousa/Documents/NetBeansProjects/Hotel-aplication/src/telas/LoginScreen.java</file>
-            <file>file:/C:/Users/levinsousa/Documents/NetBeansProjects/Hotel-aplication/src/telas/HomeScreenClient.java</file>
         </group>
     </open-files>
 </project-private>

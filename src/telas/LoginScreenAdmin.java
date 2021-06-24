@@ -184,7 +184,6 @@ public class LoginScreenAdmin extends javax.swing.JFrame {
                 System.out.println("Erro faz de novo");
             }
             
-            System.out.println(login.Login(nome, senha, nvlUsuario));
         } catch(Exception e){
             System.out.println(e);
         }

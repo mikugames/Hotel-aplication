@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 package conexaoDB;
-import java.sql.*;
+import java.sql.Connection;
+
+import java.sql.DriverManager;
+
+import java.sql.SQLException;
 /**
  *
  * @author tgabr
@@ -21,7 +25,6 @@ public class Conectar {
         try {
             Class.forName(DRIVER);
             conecta = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("CONECTADOOO");
             return conecta;
         } catch (Exception e) {
             return null;

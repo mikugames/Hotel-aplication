@@ -21,22 +21,29 @@ public class Funcionalidades {
     
     public boolean Login(String usuario, String senha, int nvlUsuario){
         try {
-            if(nvlUsuario == 3){
-                comando = "SELECT * FROM admin WHERE usuario = ?";
-            }else if(nvlUsuario == 2){
-                comando = "SELECT * FROM gerente WHERE usuario = ?";
-            }if(nvlUsuario == 1){
-                comando = "SELECT * FROM funcionario WHERE usuario = ?";
-            }else{
-                comando = "SELECT * FROM cliente WHERE usuario = ?";
+            switch (nvlUsuario) {
+                case 3:
+                    comando = "SELECT * FROM admin WHERE usuario = ?";
+                    break;
+                case 2:
+                    comando = "SELECT * FROM gerente WHERE usuario = ?";
+                    break;
+                case 1:
+                    comando = "SELECT * FROM funcionario WHERE usuario = ?";
+                    break;
+                default:
+                    comando = "SELECT * FROM cliente WHERE usuario = ?";
+                    break;
             }
             
             stmt = conexao.prepareStatement(comando);
             stmt.setString(1, usuario);
             ResultSet result = stmt.executeQuery();
+            
             if(result.next()){
                 //Se passar ele vai estar na posicao 1 , já pronto para usar os getters
                 String senhaUser = result.getString("senha");
+                
                 if(senha.equals(senhaUser)){
                     return true;
                 }
