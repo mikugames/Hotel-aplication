@@ -19,9 +19,18 @@ public class Funcionalidades {
         this.conexao = conexao;
     }
     
-    public boolean Login(String usuario, String senha){
+    public boolean Login(String usuario, String senha, int nvlUsuario){
         try {
-            comando = "SELECT * FROM funcionario WHERE usuario = ?";
+            if(nvlUsuario == 3){
+                comando = "SELECT * FROM admin WHERE usuario = ?";
+            }else if(nvlUsuario == 2){
+                comando = "SELECT * FROM gerente WHERE usuario = ?";
+            }if(nvlUsuario == 1){
+                comando = "SELECT * FROM funcionario WHERE usuario = ?";
+            }else{
+                comando = "SELECT * FROM cliente WHERE usuario = ?";
+            }
+            
             stmt = conexao.prepareStatement(comando);
             stmt.setString(1, usuario);
             ResultSet result = stmt.executeQuery();

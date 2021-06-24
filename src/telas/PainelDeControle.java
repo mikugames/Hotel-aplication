@@ -13,12 +13,12 @@ package telas;
  *
  * @author levinsousa
  */
-public class HomeScreen extends javax.swing.JFrame {
+public class PainelDeControle extends javax.swing.JFrame {
 
     /**
      * Creates new form LoginScreen
      */
-    public HomeScreen() {
+    public PainelDeControle() {
         initComponents();
     }
 
@@ -295,7 +295,7 @@ public class HomeScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HomeScreen().setVisible(true);
+                new PainelDeControle().setVisible(true);
             }
         });
     }

@@ -12,12 +12,12 @@ import conexaoDB.Conectar;
  *
  * @author levinsousa
  */
-public class LoginScreen extends javax.swing.JFrame {
+public class LoginScreenAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form LoginScreen
      */
-    public LoginScreen() {
+    public LoginScreenAdmin() {
         initComponents();
     }
 
@@ -35,7 +35,6 @@ public class LoginScreen extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        buttonCliente = new javax.swing.JButton();
         inputLoginUsuario = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -66,22 +65,8 @@ public class LoginScreen extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(63, 45, 21));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Login");
+        jLabel2.setText("Admin");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 44, -1, -1));
-
-        buttonCliente.setBackground(new java.awt.Color(202, 176, 140));
-        buttonCliente.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        buttonCliente.setForeground(new java.awt.Color(255, 255, 255));
-        buttonCliente.setText("Cliente");
-        buttonCliente.setBorder(null);
-        buttonCliente.setBorderPainted(false);
-        buttonCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        buttonCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonClienteActionPerformed(evt);
-            }
-        });
-        jPanel2.add(buttonCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 70, 30));
 
         inputLoginUsuario.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         inputLoginUsuario.setBorder(null);
@@ -137,7 +122,7 @@ public class LoginScreen extends javax.swing.JFrame {
 
         jMenu2.setText("Gerencia");
 
-        jMenuItem1.setText("Administrador");
+        jMenuItem1.setText("Gerente");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -145,7 +130,7 @@ public class LoginScreen extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem1);
 
-        jMenuItem2.setText("Gerente");
+        jMenuItem2.setText("Funcionario/Cliente");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -156,35 +141,17 @@ public class LoginScreen extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Sair");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void buttonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonClienteActionPerformed
-        Connection conexao = new Conectar().conexao();
-        int nvlUsuario = 0;
-        try{
-            Funcionalidades login = new Funcionalidades(conexao);
-        
-            String nome = inputLoginUsuario.getText();
-            String senha = String.valueOf(inputLoginPassword.getPassword());
-            
-            if(login.Login(nome,senha,nvlUsuario)){
-                HomeScreen tela = new HomeScreen();
-                tela.setVisible(true);
-                this.dispose();
-            } else{
-                System.out.println("Erro faz de novo");
-            }
-            
-            System.out.println(login.Login(nome, senha, nvlUsuario));
-        } catch(Exception e){
-            System.out.println(e);
-        }
-    }//GEN-LAST:event_buttonClienteActionPerformed
 
     private void inputLoginUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputLoginUsuarioActionPerformed
         
@@ -195,14 +162,14 @@ public class LoginScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_inputLoginPasswordActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        LoginScreenAdmin tela = new LoginScreenAdmin();
+        LoginScreenGerente tela = new LoginScreenGerente();
         tela.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void buttonLogar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogar1ActionPerformed
         Connection conexao = new Conectar().conexao();
-        int nvlUsuario = 1;
+        int nvlUsuario = 3;
         try{
             Funcionalidades login = new Funcionalidades(conexao);
         
@@ -224,10 +191,16 @@ public class LoginScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonLogar1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        LoginScreenGerente tela = new LoginScreenGerente();
+        LoginScreen tela = new LoginScreen();
         tela.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        LoginScreen tela = new LoginScreen();
+        tela.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenu3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,26 +220,26 @@ public class LoginScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginScreenAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginScreenAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginScreenAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginScreenAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginScreen().setVisible(true);
+                new LoginScreenAdmin().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonCliente;
     private javax.swing.JButton buttonLogar1;
     private javax.swing.JPasswordField inputLoginPassword;
     private javax.swing.JTextField inputLoginUsuario;

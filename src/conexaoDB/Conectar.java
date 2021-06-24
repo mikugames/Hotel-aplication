@@ -21,6 +21,7 @@ public class Conectar {
         try {
             Class.forName(DRIVER);
             conecta = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("CONECTADOOO");
             return conecta;
         } catch (Exception e) {
             return null;
