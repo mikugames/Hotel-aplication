@@ -1,5 +1,8 @@
 package telas;
-
+import dao.Funcionalidades;
+import conexaoDB.Conectar;
+import java.sql.*;
+import javax.swing.JOptionPane;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -33,18 +36,15 @@ public class CadastroQuartoScreen extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         buttonLogar = new javax.swing.JButton();
-        Nome = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        inputNome = new javax.swing.JTextField();
         CPF = new javax.swing.JLabel();
         Usuario = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        inputUsuario = new javax.swing.JTextField();
+        inputNumQuarto = new javax.swing.JTextField();
         Telefone = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
-        inputTelefone = new javax.swing.JTextField();
+        inputPrecoQuarto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        descQuarto = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
@@ -77,46 +77,36 @@ public class CadastroQuartoScreen extends javax.swing.JFrame {
                 buttonLogarActionPerformed(evt);
             }
         });
-        jPanel2.add(buttonLogar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, 97, 35));
-
-        Nome.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        Nome.setForeground(new java.awt.Color(63, 45, 21));
-        Nome.setText("Quarto");
-        jPanel2.add(Nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 230, 10));
-
-        inputNome.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        inputNome.setBorder(null);
-        jPanel2.add(inputNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 229, -1));
+        jPanel2.add(buttonLogar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 97, 35));
 
         CPF.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         CPF.setForeground(new java.awt.Color(63, 45, 21));
         CPF.setText("Descrição");
-        jPanel2.add(CPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, -1));
+        jPanel2.add(CPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
 
         Usuario.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         Usuario.setForeground(new java.awt.Color(63, 45, 21));
-        Usuario.setText("Capacidade");
-        jPanel2.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 230, 10));
+        Usuario.setText("Número");
+        jPanel2.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, 230, 10));
 
-        inputUsuario.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        inputUsuario.setBorder(null);
-        jPanel2.add(inputUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 229, -1));
+        inputNumQuarto.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        inputNumQuarto.setBorder(null);
+        jPanel2.add(inputNumQuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 229, -1));
 
         Telefone.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         Telefone.setForeground(new java.awt.Color(63, 45, 21));
         Telefone.setText("Preço");
-        jPanel2.add(Telefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
-        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 230, 10));
+        jPanel2.add(Telefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, -1, -1));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 230, 10));
 
-        inputTelefone.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        inputTelefone.setBorder(null);
-        jPanel2.add(inputTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 229, -1));
+        inputPrecoQuarto.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        inputPrecoQuarto.setBorder(null);
+        jPanel2.add(inputPrecoQuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 229, -1));
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(descQuarto);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 230, 80));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 230, 80));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon/voltarIcon.png"))); // NOI18N
@@ -128,7 +118,7 @@ public class CadastroQuartoScreen extends javax.swing.JFrame {
         });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 40));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 400, 510));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 400, 470));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ImagemHotel.png"))); // NOI18N
         jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 268, 781, 311));
@@ -139,7 +129,20 @@ public class CadastroQuartoScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogarActionPerformed
-        // TODO add your handling code here:
+        try{
+            Connection conexao = new Conectar().conexao();
+            Funcionalidades acao = new Funcionalidades(conexao);
+
+            int numero = Integer.parseInt(inputNumQuarto.getText());
+            String descricao = descQuarto.getText();
+            String preco = inputPrecoQuarto.getText();
+
+            acao.CadastrarQuarto(numero, descricao, preco);
+            
+            JOptionPane.showMessageDialog(this,"Cadastrado com sucesso.");
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this,"Erro ao cadastrar.");
+        }
     }//GEN-LAST:event_buttonLogarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -185,22 +188,19 @@ public class CadastroQuartoScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CPF;
-    private javax.swing.JLabel Nome;
     private javax.swing.JLabel Telefone;
     private javax.swing.JLabel Usuario;
     private javax.swing.JLabel background;
     private javax.swing.JButton buttonLogar;
-    private javax.swing.JTextField inputNome;
-    private javax.swing.JTextField inputTelefone;
-    private javax.swing.JTextField inputUsuario;
+    private javax.swing.JTextPane descQuarto;
+    private javax.swing.JTextField inputNumQuarto;
+    private javax.swing.JTextField inputPrecoQuarto;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.ButtonGroup nivelDeUsuario;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables

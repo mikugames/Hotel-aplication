@@ -75,11 +75,44 @@ public class Funcionalidades {
     ){
         try{
             if(nvlUsuario == 1){
-                comando = "INSERT INTO funcionario VALUES(?,?,?,?,?,?)";
+                comando = "SELECT * FROM funcionario WHERE cpf = ?";
+                stmt = conexao.prepareStatement(comando);
+                stmt.setString(1, cpf);
+                ResultSet result = stmt.executeQuery();
+                if(!result.next()){
+                    comando = "SELECT * FROM funcionario WHERE usuario = ?";
+                    stmt = conexao.prepareStatement(comando);
+                    stmt.setString(1, usuario);
+                    result = stmt.executeQuery();
+                    if(!result.next()){
+                        comando = "INSERT INTO funcionario VALUES(?,?,?,?,?,?)";
+                    }else{
+                        return false;
+                    }
+                }else{
+                    return false;
+                }
             }else{
-                comando = "INSERT INTO cliente VALUES(?,?,?,?,?,?)";
+                comando = "SELECT * FROM cliente WHERE cpf = ?";
+                stmt = conexao.prepareStatement(comando);
+                stmt.setString(1, cpf);
+                ResultSet result = stmt.executeQuery();
+                if(!result.next()){
+                    comando = "SELECT * FROM cliente WHERE usuario = ?";
+                    stmt = conexao.prepareStatement(comando);
+                    stmt.setString(1, usuario);
+                    result = stmt.executeQuery();
+                    if(!result.next()){
+                        comando = "INSERT INTO cliente VALUES(?,?,?,?,?,?)";
+                    }else{
+                        return false;
+                    }
+                }else{
+                    return false;
+                }
+
             }
-            
+
             stmt = conexao.prepareStatement(comando);
             stmt.setString(1, cpf);
             stmt.setString(2, nome);
@@ -87,7 +120,7 @@ public class Funcionalidades {
             stmt.setString(4, telefone);
             stmt.setString(5, senha);
             stmt.setInt(6, nvlUsuario);
-            
+
             stmt.execute();
             return true;
         }catch(Exception e){
@@ -110,6 +143,10 @@ public class Funcionalidades {
             stmt.setString(3, nomeProficional);
             stmt.setString(4, preco);
             stmt.execute();
+            
+            stmt.close();
+            conexao.close();
+            
             return true;
         }catch(Exception e){
             
@@ -118,4 +155,27 @@ public class Funcionalidades {
         return false;
     }
 
+    public boolean CadastrarQuarto(
+            int numero,
+            String descricao,
+            String preco
+    ){
+        try{
+            comando = "INSERT INTO quarto(numero,descricao,preco) VALUES(?,?,?)";
+            stmt = conexao.prepareStatement(comando);
+            stmt.setInt(1, numero);
+            stmt.setString(2, descricao);
+            stmt.setString(3, preco);
+            stmt.execute();
+            
+            stmt.close();
+            conexao.close();
+            
+            return true;
+        }catch(Exception e){
+            
+        }
+        
+        return false;
+    }
 }
