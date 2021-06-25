@@ -1,5 +1,10 @@
 package telas;
 
+import conexaoDB.Conectar;
+import dao.Funcionalidades;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,6 +22,9 @@ public class CadastroScreen extends javax.swing.JFrame {
      */
     public CadastroScreen() {
         initComponents();
+        if(Funcionalidades.nvlUserActive >= 2){
+            radioRecepcionista.setEnabled(true);
+        }
     }
 
     /**
@@ -172,7 +180,43 @@ public class CadastroScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogarActionPerformed
-        // TODO add your handling code here:
+        Connection conexao = new Conectar().conexao();
+        try{
+            Funcionalidades cadastrar = new Funcionalidades(conexao);
+            String cpf = inputCPF.getText();
+            String nome = inputNome.getText();
+            String usuario = inputUsuario.getText();
+            String telefone = inputTelefone.getText();
+            String senha = String.valueOf(inputSenha.getPassword());
+            int nvlUsuario = 0;
+            
+            if(radioRecepcionista.isSelected()){
+                nvlUsuario = 1;
+            }
+            
+            String cpfFrk = Funcionalidades.cpfUserActive;
+            
+            if(cadastrar.CadastrarPessoa
+                (cpf, nome, usuario, telefone, senha, nvlUsuario, cpfFrk)
+            ){
+                JOptionPane.showMessageDialog(this,
+                        "Cadastrado com sucesso.");
+                HomeScreen tela = new HomeScreen();
+                tela.setVisible(true);
+                this.dispose();
+                
+            }else{
+                JOptionPane.showMessageDialog(this,
+                    "Possivel erro com os dados.",
+                    "Erro no cadastro",
+                    JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }catch(Exception e){
+            
+        }
+        
+        
     }//GEN-LAST:event_buttonLogarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

@@ -5,7 +5,6 @@
  */
 package dao;
 import java.sql.*;
-import tabelas.Recepcao;
 /**
  *
  * @author tgabr
@@ -14,6 +13,9 @@ public class Funcionalidades {
     Connection conexao;
     String comando;
     PreparedStatement stmt;
+    
+    public static String nameUserActive, cpfUserActive;
+    public static int nvlUserActive;
     
     public Funcionalidades(Connection conexao){
         this.conexao = conexao;
@@ -43,6 +45,9 @@ public class Funcionalidades {
             if(result.next()){
                 //Se passar ele vai estar na posicao 1 , já pronto para usar os getters
                 String senhaUser = result.getString("senha");
+                cpfUserActive = result.getString("cpf");
+                nameUserActive = result.getString("nome");
+                nvlUserActive = result.getInt("nvlUsuario");
                 
                 if(senha.equals(senhaUser)){
                     return true;
@@ -59,6 +64,64 @@ public class Funcionalidades {
         }
         
     }
- 
+    
+    public boolean CadastrarPessoa(
+            String cpf, 
+            String nome, 
+            String usuario, 
+            String telefone,
+            String senha,
+            int nvlUsuario,
+            String cpfFrk
+    ){
+        try{
+            if(nvlUsuario == 1){
+                comando = "INSERT INTO funcionario VALUES(?,?,?,?,?,?)";
+            }else{
+                comando = "INSERT INTO cliente VALUES(?,?,?,?,?,?,?)";
+            }
+            
+            stmt = conexao.prepareStatement(comando);
+            stmt.setString(1, cpf);
+            stmt.setString(2, nome);
+            stmt.setString(3, usuario);
+            stmt.setString(4, telefone);
+            stmt.setString(5, senha);
+            stmt.setInt(6, nvlUsuario);
+            if(nvlUsuario == 0){
+                stmt.setString(7, cpfFrk);
+            }
+            
+            stmt.execute();
+            return true;
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return false;
+    }
+    
+    public boolean CadastrarServico(
+            String nome,
+            String descricao,
+            String nomeProficional,
+            String preco,
+            String cpfFrk
+    ){
+        try{
+            comando = "INSERT INTO servico(nome,descricao,nome_proficional,preco,Funcionario_cpf) VALUES(?,?,?,?,?)";
+            stmt = conexao.prepareStatement(comando);
+            stmt.setString(1, nome);
+            stmt.setString(2, descricao);
+            stmt.setString(3, nomeProficional);
+            stmt.setString(4, preco);
+            stmt.setString(5, cpfFrk);
+            stmt.execute();
+            return true;
+        }catch(Exception e){
+            
+        }
+        
+        return false;
+    }
 
 }

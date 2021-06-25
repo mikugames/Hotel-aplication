@@ -17,6 +17,7 @@ public class LoginScreen extends javax.swing.JFrame {
     /**
      * Creates new form LoginScreen
      */
+    
     public LoginScreen() {
         initComponents();
     }

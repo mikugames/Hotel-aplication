@@ -1,5 +1,10 @@
 package telas;
 
+import conexaoDB.Conectar;
+import dao.Funcionalidades;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -39,12 +44,12 @@ public class CadastroServicoScreen extends javax.swing.JFrame {
         CPF = new javax.swing.JLabel();
         Usuario = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        inputUsuario = new javax.swing.JTextField();
+        inputProficional = new javax.swing.JTextField();
         Telefone = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
-        inputTelefone = new javax.swing.JTextField();
+        inputPreco = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        inputDescricao = new javax.swing.JTextPane();
         jButton1 = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
@@ -70,7 +75,7 @@ public class CadastroServicoScreen extends javax.swing.JFrame {
         buttonLogar.setText("Cadastrar");
         buttonLogar.setBorder(null);
         buttonLogar.setBorderPainted(false);
-        buttonLogar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonLogar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         buttonLogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonLogarActionPerformed(evt);
@@ -99,9 +104,9 @@ public class CadastroServicoScreen extends javax.swing.JFrame {
         jPanel2.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
         jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 230, 10));
 
-        inputUsuario.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        inputUsuario.setBorder(null);
-        jPanel2.add(inputUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 229, -1));
+        inputProficional.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        inputProficional.setBorder(null);
+        jPanel2.add(inputProficional, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 229, -1));
 
         Telefone.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         Telefone.setForeground(new java.awt.Color(63, 45, 21));
@@ -109,11 +114,11 @@ public class CadastroServicoScreen extends javax.swing.JFrame {
         jPanel2.add(Telefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, -1, -1));
         jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 420, 230, 10));
 
-        inputTelefone.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        inputTelefone.setBorder(null);
-        jPanel2.add(inputTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 229, -1));
+        inputPreco.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        inputPreco.setBorder(null);
+        jPanel2.add(inputPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, 229, -1));
 
-        jScrollPane1.setViewportView(jTextPane1);
+        jScrollPane1.setViewportView(inputDescricao);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 230, 80));
 
@@ -138,7 +143,34 @@ public class CadastroServicoScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogarActionPerformed
-        // TODO add your handling code here:
+        Connection conexao = new Conectar().conexao();
+        try{
+            Funcionalidades cadastro = new Funcionalidades(conexao);
+            
+            String nome = inputNome.getText();
+            String descricao = inputDescricao.getText();
+            String nomeProficional = inputProficional.getText();
+            String preco = inputPreco.getText();
+            String cpfFrk = Funcionalidades.cpfUserActive;
+            
+            if(cadastro.CadastrarServico(nome, descricao, nomeProficional, preco, cpfFrk)){
+                JOptionPane.showMessageDialog(this,
+                        "Cadastrado com sucesso.");
+                HomeScreen tela = new HomeScreen();
+                tela.setVisible(true);
+                this.dispose();
+                
+            }else{
+                JOptionPane.showMessageDialog(this,
+                    "Possivel erro com os dados.",
+                    "Erro no cadastro",
+                    JOptionPane.ERROR_MESSAGE);
+            }
+        }catch(Exception e){
+            
+        }
+        
+        
     }//GEN-LAST:event_buttonLogarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -189,9 +221,10 @@ public class CadastroServicoScreen extends javax.swing.JFrame {
     private javax.swing.JLabel Usuario;
     private javax.swing.JLabel background;
     private javax.swing.JButton buttonLogar;
+    private javax.swing.JTextPane inputDescricao;
     private javax.swing.JTextField inputNome;
-    private javax.swing.JTextField inputTelefone;
-    private javax.swing.JTextField inputUsuario;
+    private javax.swing.JTextField inputPreco;
+    private javax.swing.JTextField inputProficional;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -199,7 +232,6 @@ public class CadastroServicoScreen extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.ButtonGroup nivelDeUsuario;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables

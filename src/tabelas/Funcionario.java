@@ -9,7 +9,7 @@ package tabelas;
  *
  * @author tgabr
  */
-public class Recepcao {
+public class Funcionario {
     private int cpf;
     private String nome;
     private String usuario;
@@ -17,7 +17,7 @@ public class Recepcao {
     private String senha;
     private int nvlusuario;
 
-    public Recepcao(int cpf, String nome, String usuario, String telefone, String senha, int nvlusuario) {
+    public Funcionario(int cpf, String nome, String usuario, String telefone, String senha, int nvlusuario) {
         this.cpf = cpf;
         this.nome = nome;
         this.usuario = usuario;

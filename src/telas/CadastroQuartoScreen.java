@@ -50,6 +50,7 @@ public class CadastroQuartoScreen extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(242, 47, 216));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(242, 235, 219));
@@ -70,7 +71,7 @@ public class CadastroQuartoScreen extends javax.swing.JFrame {
         buttonLogar.setText("Cadastrar");
         buttonLogar.setBorder(null);
         buttonLogar.setBorderPainted(false);
-        buttonLogar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonLogar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         buttonLogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonLogarActionPerformed(evt);

@@ -1,5 +1,7 @@
 package telas;
 
+import dao.Funcionalidades;
+
 
 
 
@@ -20,6 +22,7 @@ public class HomeScreen extends javax.swing.JFrame {
      */
     public HomeScreen() {
         initComponents();
+        userLabel.setText(Funcionalidades.nameUserActive);
     }
 
     /**
@@ -48,6 +51,7 @@ public class HomeScreen extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
+        userLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -185,7 +189,7 @@ public class HomeScreen extends javax.swing.JFrame {
         jLabel7.setLabelFor(jButton1);
         jLabel7.setText("Usuario:");
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, 20));
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(63, 45, 21));
@@ -212,6 +216,13 @@ public class HomeScreen extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 480, -1, -1));
+
+        userLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        userLabel.setForeground(new java.awt.Color(63, 45, 21));
+        userLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        userLabel.setText(" ");
+        userLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jPanel2.add(userLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 480, 250, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 580, 520));
 
@@ -319,5 +330,6 @@ public class HomeScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
 }
