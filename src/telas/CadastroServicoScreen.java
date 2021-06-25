@@ -145,15 +145,14 @@ public class CadastroServicoScreen extends javax.swing.JFrame {
     private void buttonLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLogarActionPerformed
         Connection conexao = new Conectar().conexao();
         try{
-            Funcionalidades cadastro = new Funcionalidades(conexao);
+            Funcionalidades cadastrar = new Funcionalidades(conexao);
             
             String nome = inputNome.getText();
             String descricao = inputDescricao.getText();
             String nomeProficional = inputProficional.getText();
             String preco = inputPreco.getText();
-            String cpfFrk = Funcionalidades.cpfUserActive;
             
-            if(cadastro.CadastrarServico(nome, descricao, nomeProficional, preco, cpfFrk)){
+            if(cadastrar.CadastrarServico(nome, descricao, nomeProficional, preco)){
                 JOptionPane.showMessageDialog(this,
                         "Cadastrado com sucesso.");
                 HomeScreen tela = new HomeScreen();
@@ -167,7 +166,7 @@ public class CadastroServicoScreen extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             }
         }catch(Exception e){
-            
+            System.out.println(e);
         }
         
         

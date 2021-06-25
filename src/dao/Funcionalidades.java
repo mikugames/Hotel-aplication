@@ -71,14 +71,13 @@ public class Funcionalidades {
             String usuario, 
             String telefone,
             String senha,
-            int nvlUsuario,
-            String cpfFrk
+            int nvlUsuario
     ){
         try{
             if(nvlUsuario == 1){
                 comando = "INSERT INTO funcionario VALUES(?,?,?,?,?,?)";
             }else{
-                comando = "INSERT INTO cliente VALUES(?,?,?,?,?,?,?)";
+                comando = "INSERT INTO cliente VALUES(?,?,?,?,?,?)";
             }
             
             stmt = conexao.prepareStatement(comando);
@@ -88,9 +87,6 @@ public class Funcionalidades {
             stmt.setString(4, telefone);
             stmt.setString(5, senha);
             stmt.setInt(6, nvlUsuario);
-            if(nvlUsuario == 0){
-                stmt.setString(7, cpfFrk);
-            }
             
             stmt.execute();
             return true;
@@ -104,17 +100,15 @@ public class Funcionalidades {
             String nome,
             String descricao,
             String nomeProficional,
-            String preco,
-            String cpfFrk
+            String preco
     ){
         try{
-            comando = "INSERT INTO servico(nome,descricao,nome_proficional,preco,Funcionario_cpf) VALUES(?,?,?,?,?)";
+            comando = "INSERT INTO servico(nome,descricao,nome_proficional,preco) VALUES(?,?,?,?)";
             stmt = conexao.prepareStatement(comando);
             stmt.setString(1, nome);
             stmt.setString(2, descricao);
             stmt.setString(3, nomeProficional);
             stmt.setString(4, preco);
-            stmt.setString(5, cpfFrk);
             stmt.execute();
             return true;
         }catch(Exception e){

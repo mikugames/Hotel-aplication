@@ -194,10 +194,8 @@ public class CadastroScreen extends javax.swing.JFrame {
                 nvlUsuario = 1;
             }
             
-            String cpfFrk = Funcionalidades.cpfUserActive;
-            
             if(cadastrar.CadastrarPessoa
-                (cpf, nome, usuario, telefone, senha, nvlUsuario, cpfFrk)
+                (cpf, nome, usuario, telefone, senha, nvlUsuario)
             ){
                 JOptionPane.showMessageDialog(this,
                         "Cadastrado com sucesso.");
